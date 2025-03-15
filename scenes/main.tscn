@@ -1,3 +1,69 @@
-[gd_scene format=3 uid="uid://cw12oln663ifm"]
+[gd_scene load_steps=2 format=3 uid="uid://cw12oln663ifm"]
+
+[ext_resource type="PackedScene" uid="uid://d5sgoyddxibf" path="res://scenes/player.tscn" id="1_o5qli"]
 
 [node name="Main" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource("1_o5qli")]
+z_index = 100
+position = Vector2(457, 320)
+metadata/_edit_group_ = true
+
+[node name="background" type="ColorRect" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 1.0
+offset_right = 33.0
+offset_bottom = 19.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(14.3161, 16.4804)
+color = Color(9.2411e-06, 0.7902, 0.987908, 1)
+
+[node name="background2" type="ColorRect" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 686.0
+offset_top = 326.0
+offset_right = 718.0
+offset_bottom = 345.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(14.3161, 16.4804)
+color = Color(0.439691, 0.783373, 0.79413, 1)
+
+[node name="background3" type="ColorRect" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 684.0
+offset_top = 1.0
+offset_right = 716.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(14.3161, 16.4804)
+color = Color(0.688334, 0.695049, 0.902983, 1)
+
+[node name="background4" type="ColorRect" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 2.0
+offset_top = 327.0
+offset_right = 34.0
+offset_bottom = 346.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(14.3161, 16.4804)
+color = Color(0.798364, 0.726917, 0.0902404, 1)

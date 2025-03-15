@@ -6,8 +6,7 @@
 
 [node name="Player" parent="." instance=ExtResource("1_o5qli")]
 z_index = 100
-position = Vector2(457, 320)
-metadata/_edit_group_ = true
+position = Vector2(1040, 449)
 
 [node name="background" type="ColorRect" parent="."]
 anchors_preset = 8

@@ -8,13 +8,16 @@ var current_turn_speed = 0;
 
 
 ##This is the maximum turn speed of the player, measured in Degrees per Second. 
-@export var mech_max_turn_speed = 180;
+@export var mech_max_turn_speed = 360;
 
-@export var mech_turn_speed_floor = 10;
+##This is the speed the mech will start turning at. UNIT: Degrees/Second
+@export var mech_turn_speed = 1;
 
+##This is by how much the mech will start accelerating its turning. UNIT: Degrees/Second
 @export var mech_turn_acceleration = 1
 
-@export var mech_turn_decceleration = 20;
+##This is the speed the mech will deccelerate and try to stop turning at. UNIT: Degrees/Second
+@export var mech_turn_decceleration = 1;
 
 
 
@@ -51,24 +54,19 @@ func _process(delta: float) -> void:
 		turn_direction += 1;
 		
 	
-	if (turn_direction == 0): #HANDLING DECELERATION
-		if (abs(current_turn_speed) <= mech_turn_decceleration):
-			current_turn_speed = 0
-		elif (current_turn_speed < 0):
-			current_turn_speed += mech_turn_decceleration
-		else: #(if current_turn_speed > 0):
-			current_turn_speed -= mech_turn_decceleration
-		
-	else: #if (turn_direction != 0, or player is turning)
-		current_turn_speed += (turn_direction * mech_turn_speed_floor)
-		
-	#current turn speed is the way the player will spin The Next Frame. this should:
-	#change whenever q or e is pressed
-	#increase the amount its changing by the longer q or e are pressed
-	#tend towards 0 based on the decelleration speed
 	
-	current_turn_speed += (turn_direction * mech_turn_speed_floor)
 	
+	if (abs(current_turn_speed) <= mech_turn_decceleration): #makes the deccelleration stop the mech once it gets close enough to 0
+		current_turn_speed = 0
+	elif (current_turn_speed < 0): 
+		current_turn_speed += mech_turn_decceleration
+	else: #(if current_turn_speed > 0):
+		current_turn_speed -= mech_turn_decceleration
+	
+	current_turn_speed += (turn_direction * (mech_turn_speed + mech_turn_decceleration))
+	
+	current_turn_speed = clamp(current_turn_speed, -mech_max_turn_speed, mech_max_turn_speed)
+	
+	current_turn_speed += (turn_direction * mech_turn_speed)
 
-	
 	rotation_degrees += (current_turn_speed) * delta;

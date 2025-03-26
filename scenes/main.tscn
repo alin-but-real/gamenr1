@@ -8,6 +8,12 @@
 [node name="Player" parent="." instance=ExtResource("1_o5qli")]
 z_index = 100
 position = Vector2(1158, 610)
+move_speed_max = 500
+move_speed = 5
+move_accel = 2
+move_decceleration = 20
+dash_cooldown = 5000
+dash_decceleration = 20
 
 [node name="background" type="ColorRect" parent="."]
 anchors_preset = 8

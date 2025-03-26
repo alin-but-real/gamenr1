@@ -12,6 +12,8 @@ move_speed_max = 500
 move_speed = 5
 move_accel = 2
 move_decceleration = 20
+dash_speed = 200
+dash_decceleration = 1
 
 [node name="background" type="ColorRect" parent="."]
 anchors_preset = 8

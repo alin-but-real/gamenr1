@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://cw12oln663ifm"]
 
-[ext_resource type="PackedScene" uid="uid://d5sgoyddxibf" path="res://scenes/player.tscn" id="1_o5qli"]
+[ext_resource type="PackedScene" path="res://scenes/player.tscn" id="1_o5qli"]
 [ext_resource type="PackedScene" uid="uid://cm052urhex8n1" path="res://scenes/user_interface.tscn" id="2_0wfyh"]
 
 [node name="Main" type="Node2D"]
@@ -8,12 +8,6 @@
 [node name="Player" parent="." instance=ExtResource("1_o5qli")]
 z_index = 100
 position = Vector2(1158, 610)
-move_speed_max = 500
-move_speed = 5
-move_accel = 2
-move_decceleration = 20
-dash_cooldown = 5000
-dash_decceleration = 20
 
 [node name="background" type="ColorRect" parent="."]
 anchors_preset = 8

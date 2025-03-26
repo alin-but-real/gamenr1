@@ -94,8 +94,6 @@ func _process(delta: float) -> void:
 	
 	current_move_speed = clamp(current_move_speed, -move_speed_max, move_speed_max)
 	
-	print_debug(current_move_speed)
-	
 	position.y += current_move_speed*-cos(rotation) * delta
 	position.x += current_move_speed*sin(rotation) * delta
 	

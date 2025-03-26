@@ -25,6 +25,8 @@ var current_dash_cooldown = 0;
 ##This is the current dash speed of the player. It should be 0 most of the time.
 var current_dash_speed = 0;
 
+var dash_direction
+
 
 
 
@@ -95,13 +97,21 @@ func _process(delta: float) -> void:
 	position.x += current_move_speed*sin(rotation) * delta
 	
 	#DASH HANDLING - Q AND E
-	var dash_direction = 0 #left is -1, right is +1
 	
-	
-	if Input.is_action_pressed("move_left"): #THESE DONT EXIST YET
-		dash_direction -= 1
-	if Input.is_action_pressed("move_right"):
-		dash_direction += 1
+	if (current_dash_cooldown == 0):
+		dash_direction = 0;
+		if Input.is_action_pressed("move_left"): #THESE DONT EXIST YET
+			dash_direction -= 1 #left is -1, right is +1
+			current_dash_cooldown = dash_cooldown
+			current_dash_speed = dash_direction * dash_speed
+		if Input.is_action_pressed("move_right"):
+			dash_direction += 1 #left is -1, right is +1
+			current_dash_cooldown = dash_cooldown
+			current_dash_speed = dash_direction * dash_speed
+	else:
+		current_dash_cooldown -= 20
+		position.y += current_dash_speed*-cos(rotation + deg_to_rad(90)) * delta
+		position.x += current_dash_speed*sin(rotation + deg_to_rad(90)) * delta
 	
 	
 	if (abs(current_dash_speed) <= dash_decceleration): #makes the deccelleration stop the mech once it gets close enough to 0
@@ -110,16 +120,7 @@ func _process(delta: float) -> void:
 		current_dash_speed += dash_decceleration
 	else:
 		current_dash_speed -= dash_decceleration
-	
-	
-	
-	if (current_dash_cooldown) == 0:
-		current_dash_cooldown = dash_cooldown
-		current_dash_speed = dash_direction * dash_speed
-	else:
-		current_dash_cooldown -= 20
-		position.y += current_dash_speed*-cos(rotation + 0.5*dash_direction) * delta
-		position.x += current_dash_speed*sin(rotation + 0.5*dash_direction) * delta
+
 
 	
 	

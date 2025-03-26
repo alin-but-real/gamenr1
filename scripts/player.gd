@@ -41,11 +41,12 @@ func _process(delta: float) -> void:
 	else: #(if current_turn_speed > 0):
 		current_turn_speed -= mech_turn_decceleration
 	
+	#first, add the turning to the current turn speed...
 	current_turn_speed += (turn_direction * (mech_turn_speed + mech_turn_decceleration))
-	
+	#second, clamp the value so it doesn't turn too fast
 	current_turn_speed = clamp(current_turn_speed, -mech_max_turn_speed, mech_max_turn_speed)
 	
-	current_turn_speed += (turn_direction * mech_turn_speed)
+	#current_turn_speed += (turn_direction * mech_turn_speed)
 	
 	rotation_degrees += (current_turn_speed) * delta;
 	#MOVEMENT HANDLING - UNFINISHED

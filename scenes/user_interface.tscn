@@ -8,51 +8,60 @@
 [ext_resource type="Texture2D" uid="uid://dienfbc6qrmue" path="res://assets/ui/doll_torso.png" id="6_prbuy"]
 [ext_resource type="Texture2D" uid="uid://dkabiwcrue6mx" path="res://assets/ui/doll_head.png" id="7_5kqoc"]
 
-[node name="CanvasLayer" type="CanvasLayer"]
-follow_viewport_enabled = true
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="Background" type="Sprite2D" parent="."]
-position = Vector2(200, 112)
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+scale = Vector2(4.8, 4.8)
+transform = Transform2D(4.8, 0, 0, 4.8, 0, 0)
+
+[node name="Background" type="Sprite2D" parent="CanvasLayer"]
+position = Vector2(200, 112.5)
 texture = ExtResource("1_syvep")
 
-[node name="WeaponScreen" type="Sprite2D" parent="."]
+[node name="WeaponScreen" type="Sprite2D" parent="CanvasLayer"]
 position = Vector2(351, 172)
 texture = ExtResource("2_xsrv6")
 
-[node name="AmmoScreen" type="Sprite2D" parent="."]
+[node name="AmmoScreen" type="Sprite2D" parent="CanvasLayer"]
 position = Vector2(334, 205)
 texture = ExtResource("3_sdud1")
 
-[node name="AmmoScreen2" type="Sprite2D" parent="."]
+[node name="AmmoScreen2" type="Sprite2D" parent="CanvasLayer"]
 position = Vector2(369, 205)
 texture = ExtResource("3_sdud1")
 
-[node name="PanelContainer" type="PanelContainer" parent="."]
+[node name="Health_Container" type="PanelContainer" parent="CanvasLayer"]
 
-[node name="HealthScreen" type="Sprite2D" parent="PanelContainer"]
+[node name="screen" type="Sprite2D" parent="CanvasLayer/Health_Container"]
 position = Vector2(48, 72)
 texture = ExtResource("2_l2bgj")
 
-[node name="left_arm" type="Sprite2D" parent="PanelContainer"]
+[node name="left_arm" type="Sprite2D" parent="CanvasLayer/Health_Container"]
 position = Vector2(67, 64.5)
 texture = ExtResource("5_aisij")
 
-[node name="right_arm" type="Sprite2D" parent="PanelContainer"]
+[node name="right_arm" type="Sprite2D" parent="CanvasLayer/Health_Container"]
 position = Vector2(29, 64.5)
 texture = ExtResource("5_aisij")
 
-[node name="right_leg" type="Sprite2D" parent="PanelContainer"]
+[node name="right_leg" type="Sprite2D" parent="CanvasLayer/Health_Container"]
 position = Vector2(41, 100)
 texture = ExtResource("5_aisij")
 
-[node name="left_leg" type="Sprite2D" parent="PanelContainer"]
+[node name="left_leg" type="Sprite2D" parent="CanvasLayer/Health_Container"]
 position = Vector2(55, 100)
 texture = ExtResource("5_aisij")
 
-[node name="torso" type="Sprite2D" parent="PanelContainer"]
+[node name="torso" type="Sprite2D" parent="CanvasLayer/Health_Container"]
 position = Vector2(48, 65.5)
 texture = ExtResource("6_prbuy")
 
-[node name="head" type="Sprite2D" parent="PanelContainer"]
+[node name="head" type="Sprite2D" parent="CanvasLayer/Health_Container"]
 position = Vector2(48, 36.5)
 texture = ExtResource("7_5kqoc")

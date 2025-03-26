@@ -27,6 +27,9 @@ var current_dash_speed = 0;
 
 var dash_direction
 
+signal fire_weapon_0
+signal fire_weapon_1
+signal fire_weapon_2
 
 
 
@@ -121,6 +124,14 @@ func _process(delta: float) -> void:
 	else:
 		current_dash_speed -= dash_decceleration
 
+	#WEAPON HANDLING
+	
+	if Input.is_action_pressed("fire_weapon_0"):
+		fire_weapon_0.emit()
+	if Input.is_action_pressed("fire_weapon_1"):
+		fire_weapon_1.emit()
+	if Input.is_action_pressed("fire_weapon_2"):
+		fire_weapon_2.emit()
 
 	
 	

@@ -73,12 +73,12 @@ func _process(delta: float) -> void:
 	
 	
 	#MOVEMENT HANDLING - UNFINISHED
-	var direction = 0 # The player's movement vector. describes wether he's moving forward or not +1 forward, -1 backward
+	var move_direction = 0 # The player's movement vector. describes wether he's moving forward or not +1 forward, -1 backward
 	
 	if Input.is_action_pressed("move_forward"):
-		direction += 1
+		move_direction += 1
 	if Input.is_action_pressed("move_backward"):
-		direction -= 1
+		move_direction += -1
 	
 	if (abs(current_move_speed) <= move_decceleration): #makes the deccelleration stop the mech once it gets close enough to 0
 		current_move_speed = 0
@@ -87,7 +87,7 @@ func _process(delta: float) -> void:
 	else:
 		current_move_speed -= move_decceleration
 	
-	current_move_speed += direction * (move_speed + move_decceleration)
+	current_move_speed += move_direction * (move_speed + move_decceleration)
 	
 	current_move_speed = clamp(current_move_speed, -move_speed_max, move_speed_max)
 	
@@ -101,7 +101,7 @@ func _process(delta: float) -> void:
 	if (current_dash_cooldown == 0):
 		dash_direction = 0;
 		if Input.is_action_pressed("move_left"): #THESE DONT EXIST YET
-			dash_direction -= 1 #left is -1, right is +1
+			dash_direction += -1 #left is -1, right is +1
 			current_dash_cooldown = dash_cooldown
 			current_dash_speed = dash_direction * dash_speed
 		if Input.is_action_pressed("move_right"):

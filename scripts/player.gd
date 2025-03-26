@@ -9,7 +9,7 @@ extends Area2D
 ##This is how much the mech will deccelerate by each frame, when not holding down any movement key.
 @export var move_decceleration = 1
 
-##This is the cooldown before the player is allowed to dash again, measured in milliseconds. (1s = 1000ms)
+##This is the cooldown before the player is allowed to dash again. I don't know what this is even measured in.
 @export var dash_cooldown = 2000
 ##This is the speed the player will gain when dashing. It's also related to the time it takes to dash and is jank af.
 @export var dash_speed = 1000;

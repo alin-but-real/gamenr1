@@ -1,9 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://c30qcrpj0upsy"]
+[gd_scene load_steps=8 format=3 uid="uid://c30qcrpj0upsy"]
 
 [ext_resource type="Texture2D" uid="uid://drnqlew0gbtmd" path="res://assets/art/icon.svg" id="1_3vyb7"]
 [ext_resource type="Script" uid="uid://da8a01o3oa476" path="res://scripts/player.gd" id="1_g2els"]
 [ext_resource type="Script" uid="uid://blrpbi3jhu3mq" path="res://scripts/player_weapon_slot_0.gd" id="3_dqkch"]
 [ext_resource type="PackedScene" uid="uid://bsrfn6smf85o2" path="res://scenes/weapon-projectile.tscn" id="3_qhqgy"]
+[ext_resource type="Script" uid="uid://cwulwwyctsobr" path="res://scripts/player_weapon_slot_1.gd" id="5_qlg0r"]
+[ext_resource type="Script" uid="uid://dl0mbgm816xp1" path="res://scripts/player_weapon_slot_2.gd" id="6_tuyoq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g2els"]
 size = Vector2(121, 119)
@@ -24,8 +26,18 @@ script = ExtResource("3_dqkch")
 
 [node name="Weapon-projectile" parent="Weapon_slot_0" instance=ExtResource("3_qhqgy")]
 
-[node name="Weapon_slot_1" type="Node" parent="."]
+[node name="Weapon_slot_1" type="Node2D" parent="."]
+position = Vector2(-62, 27)
+script = ExtResource("5_qlg0r")
 
-[node name="Weapon_slot_2" type="Node" parent="."]
+[node name="Weapon-projectile" parent="Weapon_slot_1" instance=ExtResource("3_qhqgy")]
+
+[node name="Weapon_slot_2" type="Node2D" parent="."]
+position = Vector2(62, 26)
+script = ExtResource("6_tuyoq")
+
+[node name="Weapon-projectile" parent="Weapon_slot_2" instance=ExtResource("3_qhqgy")]
 
 [connection signal="fire_weapon_0" from="." to="Weapon_slot_0" method="_on_player_fire_weapon_0"]
+[connection signal="fire_weapon_1" from="." to="Weapon_slot_1" method="_on_player_fire_weapon_1"]
+[connection signal="fire_weapon_2" from="." to="Weapon_slot_2" method="_on_player_fire_weapon_2"]

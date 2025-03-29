@@ -17,3 +17,6 @@ texture = ExtResource("1_bpeuo")
 position = Vector2(-0.499998, -129.5)
 scale = Vector2(0.617188, 0.195313)
 texture = ExtResource("1_bpeuo")
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true

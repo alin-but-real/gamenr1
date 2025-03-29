@@ -51,7 +51,7 @@ func _ready() -> void:
 	print_debug("player awake")
 
 func _process(delta: float) -> void:
-
+	
 	#TURN HANDLING
 	var turn_direction: int = 0 # LEFT IS -1, RIGHT IS 1
 	

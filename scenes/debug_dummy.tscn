@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://c3h5sjp4kk2i0"]
+
+[ext_resource type="Texture2D" uid="uid://drnqlew0gbtmd" path="res://assets/art/icon.svg" id="1_pkytk"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_r2l6r"]
+size = Vector2(127, 127)
+
+[node name="DebugDummy" type="Area2D"]
+rotation = 0.0067098
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, 0.5)
+shape = SubResource("RectangleShape2D_r2l6r")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_pkytk")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+rotation = -0.792453
+texture = ExtResource("1_pkytk")

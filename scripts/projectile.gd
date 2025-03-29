@@ -4,7 +4,7 @@ extends Area2D
 @export var bullet_lifetime = 2
 
 func _ready() -> void:
-	print_debug("bullet fired")
+	#print_debug("bullet fired")
 	$Timer.wait_time = bullet_lifetime
 
 func _process(delta: float) -> void:

@@ -8,12 +8,12 @@
 script = ExtResource("1_01cec")
 projectile = ExtResource("2_r30r8")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Barrel" type="Sprite2D" parent="."]
 position = Vector2(-0.500001, -65)
 scale = Vector2(0.289063, 1)
 texture = ExtResource("1_bpeuo")
 
-[node name="Sprite2D2" type="Sprite2D" parent="."]
+[node name="Muzzle" type="Sprite2D" parent="."]
 position = Vector2(-0.499998, -129.5)
 scale = Vector2(0.617188, 0.195313)
 texture = ExtResource("1_bpeuo")

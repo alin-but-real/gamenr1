@@ -7,7 +7,7 @@ extends Area2D
 ##This is how much the mech will accelerate by each frame.
 @export var move_accel = 10
 ##This is how much the mech will deccelerate by each frame, when not holding down any movement key.
-@export var move_decceleration = 20
+@export var move_decceleration = 1
 
 ##This is the cooldown before the player is allowed to dash again. I don't know what this is even measured in.
 @export var dash_cooldown = 5000
@@ -101,9 +101,18 @@ func _process(delta: float) -> void:
 	
 	#now handling velocity vector
 	
-	velocity_vector += (move_vector/100 * move_accel) 
+	#velocity_vector += (move_vector/100 * move_accel) 
 	
-	velocity_vector = velocity_vector.clamp(Vector2(-1,-1), Vector2(1,1))
+	if (move_vector == Vector2.ZERO):
+		velocity_vector += -velocity_vector.normalized() * move_decceleration/100
+		if (velocity_vector.length() <= move_decceleration/100):
+			velocity_vector = Vector2.ZERO
+	else:
+		velocity_vector += (move_vector/100 * move_accel) 
+		velocity_vector = velocity_vector.clamp(Vector2(-1,-1), Vector2(1,1))
+		
+	
+	
 	
 	
 	

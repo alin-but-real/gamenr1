@@ -2,12 +2,12 @@ extends Area2D
 
 ##This is the maximum move speed of the player.
 @export var move_speed_max = 500
-##This is the speed the mech will move at base, without any acceleration.
+##This is the speed the mech will move at base, when holding down movement keys, without any acceleration.
 @export var move_speed = 1
-##This is how much the mech will accelerate by each frame.
-@export var move_accel = 10
-##This is how much the mech will deccelerate by each frame, when not holding down any movement key.
-@export var move_decceleration = 1
+##This is the percent by which the mech will accelerate towards its max speed, each frame. (EX: if this is set to 0.10, it will accelerate to 100% in 10 frames.)
+@export var move_accel = 0.01
+##This is the percent by which the mech will decellerate towards 0, when not holding down any movement key. (EX: if this is set to 0.2, the mech will reach a full stop (from full speed) in 5 frames)
+@export var move_decceleration = 0.05
 
 ##This is the cooldown before the player is allowed to dash again. I don't know what this is even measured in.
 @export var dash_cooldown = 5000
@@ -104,33 +104,12 @@ func _process(delta: float) -> void:
 	#velocity_vector += (move_vector/100 * move_accel) 
 	
 	if (move_vector == Vector2.ZERO):
-		velocity_vector += -velocity_vector.normalized() * move_decceleration/100
-		if (velocity_vector.length() <= move_decceleration/100):
+		velocity_vector += -velocity_vector.normalized() * move_decceleration
+		if (velocity_vector.length() <= move_decceleration):
 			velocity_vector = Vector2.ZERO
 	else:
-		velocity_vector += (move_vector/100 * move_accel) 
+		velocity_vector += (move_vector * move_accel) 
 		velocity_vector = velocity_vector.clamp(Vector2(-1,-1), Vector2(1,1))
-		
-	
-	
-	
-	
-	
-	#if (abs(current_move_speed) <= move_decceleration): #makes the deccelleration stop the mech once it gets close enough to 0
-		#current_move_speed = 0
-	#elif (current_move_speed < 0): 
-		#current_move_speed += move_decceleration
-	#else:
-		#current_move_speed -= move_decceleration
-	
-	#current_move_speed += move_vector.y * (move_speed + move_decceleration)
-	
-	#current_move_speed += move_direction * (move_speed + move_decceleration)
-	
-	#current_move_speed = clamp(current_move_speed, -move_speed_max, move_speed_max)
-	
-	#position.y += current_move_speed*-cos(rotation) * delta
-	#position.x += current_move_speed*sin(rotation) * delta
 	
 	position.x += (move_vector.x * move_speed) + (velocity_vector.x * move_speed_max) * delta
 	position.y += (move_vector.y * move_speed) + (velocity_vector.y * move_speed_max) * delta

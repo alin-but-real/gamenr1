@@ -1,0 +1,80 @@
+[gd_scene load_steps=5 format=3 uid="uid://cw12oln663ifm"]
+
+[ext_resource type="PackedScene" uid="uid://c30qcrpj0upsy" path="res://scenes/player.tscn" id="1_o5qli"]
+[ext_resource type="PackedScene" uid="uid://cm052urhex8n1" path="res://scenes/user_interface.tscn" id="2_0wfyh"]
+[ext_resource type="PackedScene" uid="uid://bxlpvk6fkjk62" path="res://scenes/Crosshair.tscn" id="2_jyhfs"]
+[ext_resource type="PackedScene" uid="uid://c3h5sjp4kk2i0" path="res://scenes/debug_dummy.tscn" id="3_sugp2"]
+
+[node name="Main" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource("1_o5qli")]
+z_index = 100
+position = Vector2(1158, 610)
+
+[node name="Crosshair" parent="Player" node_paths=PackedStringArray("player") instance=ExtResource("2_jyhfs")]
+player = NodePath("..")
+
+[node name="background" type="ColorRect" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 1.0
+offset_right = 33.0
+offset_bottom = 19.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(14.3161, 16.4804)
+color = Color(9.2411e-06, 0.7902, 0.987908, 1)
+
+[node name="background2" type="ColorRect" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 682.0
+offset_top = 324.0
+offset_right = 714.0
+offset_bottom = 343.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(14.3161, 16.4804)
+color = Color(0.439691, 0.783373, 0.79413, 1)
+
+[node name="background3" type="ColorRect" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 684.0
+offset_top = 1.0
+offset_right = 716.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(14.3161, 16.4804)
+color = Color(0.688334, 0.695049, 0.902983, 1)
+
+[node name="background4" type="ColorRect" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 2.0
+offset_top = 327.0
+offset_right = 34.0
+offset_bottom = 346.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(14.3161, 16.4804)
+color = Color(0.798364, 0.726917, 0.0902404, 1)
+
+[node name="CanvasLayer" parent="." instance=ExtResource("2_0wfyh")]
+follow_viewport_enabled = false
+
+[node name="DebugDummy" parent="." instance=ExtResource("3_sugp2")]
+position = Vector2(1573, 331)

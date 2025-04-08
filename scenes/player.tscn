@@ -23,7 +23,6 @@ shape = SubResource("RectangleShape2D_g2els")
 
 [node name="Weapon_slot_0" type="Node2D" parent="."]
 script = ExtResource("3_dqkch")
-mouse_controlled = true
 
 [node name="Weapon-projectile" parent="Weapon_slot_0" instance=ExtResource("3_qhqgy")]
 

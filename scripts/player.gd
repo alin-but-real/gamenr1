@@ -3,9 +3,9 @@ extends Area2D
 ##This is the maximum move speed of the player.
 @export var move_speed_max = 500
 ##This is the speed the mech will move at base, without any acceleration.
-@export var move_speed = 5
+@export var move_speed = 1
 ##This is how much the mech will accelerate by each frame.
-@export var move_accel = 2
+@export var move_accel = 10
 ##This is how much the mech will deccelerate by each frame, when not holding down any movement key.
 @export var move_decceleration = 20
 
@@ -45,6 +45,8 @@ signal fire_weapon_2
 ##This is the speed the mech will deccelerate and try to stop turning at. UNIT: Degrees/Second
 @export var mech_turn_decceleration = 1;
 
+var velocity_vector : Vector2 = Vector2.ZERO
+
 
 
 func _ready() -> void:
@@ -76,51 +78,78 @@ func _process(delta: float) -> void:
 	
 	
 	#MOVEMENT HANDLING - UNFINISHED
-	var move_direction = 0 # The player's movement vector. describes wether he's moving forward or not +1 forward, -1 backward
+	#var move_direction = 0 # The player's movement vector. describes wether he's moving forward or not +1 forward, -1 backward
+	
+	#MOVEMENT VECTOR DESCRIBES THE "INTENTION" OF THE PLAYER TO MOVE
+	#movement vector is measured from (-1,-1) to (+1,+1), describing north-west and south-east movement respectively
+	
+	#VELOCITY VECTOR DESCRIBES THE VELOCITY OF THE PLAYER RIGHT NOW
+	#velocity vector ranges from (-1/-1) to (+1/+1), where 0 is static, and 1 is max speed in that direction
+	
+	var move_vector : Vector2 = Vector2.ZERO
 	
 	if Input.is_action_pressed("move_forward"):
-		move_direction += 1
+		move_vector.y += -1
 	if Input.is_action_pressed("move_backward"):
-		move_direction += -1
+		move_vector.y += 1
+	if Input.is_action_pressed("move_left"):
+		move_vector.x += -1
+	if Input.is_action_pressed("move_right"):
+		move_vector.x += 1
 	
-	if (abs(current_move_speed) <= move_decceleration): #makes the deccelleration stop the mech once it gets close enough to 0
-		current_move_speed = 0
-	elif (current_move_speed < 0): 
-		current_move_speed += move_decceleration
-	else:
-		current_move_speed -= move_decceleration
+	move_vector = move_vector.normalized()
 	
-	current_move_speed += move_direction * (move_speed + move_decceleration)
+	#now handling velocity vector
 	
-	current_move_speed = clamp(current_move_speed, -move_speed_max, move_speed_max)
+	velocity_vector += (move_vector/100 * move_accel) 
 	
-	position.y += current_move_speed*-cos(rotation) * delta
-	position.x += current_move_speed*sin(rotation) * delta
+	velocity_vector = velocity_vector.clamp(Vector2(-1,-1), Vector2(1,1))
+	
+	
+	
+	#if (abs(current_move_speed) <= move_decceleration): #makes the deccelleration stop the mech once it gets close enough to 0
+		#current_move_speed = 0
+	#elif (current_move_speed < 0): 
+		#current_move_speed += move_decceleration
+	#else:
+		#current_move_speed -= move_decceleration
+	
+	#current_move_speed += move_vector.y * (move_speed + move_decceleration)
+	
+	#current_move_speed += move_direction * (move_speed + move_decceleration)
+	
+	#current_move_speed = clamp(current_move_speed, -move_speed_max, move_speed_max)
+	
+	#position.y += current_move_speed*-cos(rotation) * delta
+	#position.x += current_move_speed*sin(rotation) * delta
+	
+	position.x += (move_vector.x * move_speed) + (velocity_vector.x * move_speed_max) * delta
+	position.y += (move_vector.y * move_speed) + (velocity_vector.y * move_speed_max) * delta
 	
 	#DASH HANDLING - Q AND E
 	
-	if (current_dash_cooldown == 0):
-		dash_direction = 0;
-		if Input.is_action_pressed("move_left"): #THESE DONT EXIST YET
-			dash_direction += -1 #left is -1, right is +1
-			current_dash_cooldown = dash_cooldown
-			current_dash_speed = dash_direction * dash_speed
-		if Input.is_action_pressed("move_right"):
-			dash_direction += 1 #left is -1, right is +1
-			current_dash_cooldown = dash_cooldown
-			current_dash_speed = dash_direction * dash_speed
-	else:
-		current_dash_cooldown -= 20
-		position.y += current_dash_speed*-cos(rotation + deg_to_rad(90)) * delta
-		position.x += current_dash_speed*sin(rotation + deg_to_rad(90)) * delta
-	
-	
-	if (abs(current_dash_speed) <= dash_decceleration): #makes the deccelleration stop the mech once it gets close enough to 0
-		current_dash_speed = 0
-	elif (current_dash_speed < 0): 
-		current_dash_speed += dash_decceleration
-	else:
-		current_dash_speed -= dash_decceleration
+	#if (current_dash_cooldown == 0):
+		#dash_direction = 0;
+		#if Input.is_action_pressed("move_left"):
+			#dash_direction += -1 #left is -1, right is +1
+			#current_dash_cooldown = dash_cooldown
+			#current_dash_speed = dash_direction * dash_speed
+		#if Input.is_action_pressed("move_right"):
+			#dash_direction += 1 #left is -1, right is +1
+			#current_dash_cooldown = dash_cooldown
+			#current_dash_speed = dash_direction * dash_speed
+	#else:
+		#current_dash_cooldown -= 20
+		#position.y += current_dash_speed*-cos(rotation + deg_to_rad(90)) * delta
+		#position.x += current_dash_speed*sin(rotation + deg_to_rad(90)) * delta
+	#
+	#
+	#if (abs(current_dash_speed) <= dash_decceleration): #makes the deccelleration stop the mech once it gets close enough to 0
+		#current_dash_speed = 0
+	#elif (current_dash_speed < 0): 
+		#current_dash_speed += dash_decceleration
+	#else:
+		#current_dash_speed -= dash_decceleration
 
 	#WEAPON HANDLING
 	

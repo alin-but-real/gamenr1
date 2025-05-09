@@ -10,27 +10,26 @@ extends Area2D
 @export var move_decceleration = 0.01
 
 ##This is the cooldown before the player is allowed to dash again. I don't know what this is even measured in.
-@export var dash_cooldown = 5000
+# @export var dash_cooldown = 5000
 ##This is the speed the player will gain when dashing. It's also related to the time it takes to dash and is jank af.
-@export var dash_speed = 1000;
+# @export var dash_speed = 1000;
 ##This is the decceleration the player will experience each frame after a dash. So if speed = 1000, decel = 200, it's 5 frames of dash.
-@export var dash_decceleration = 20
+# @export var dash_decceleration = 20
 
 ##This is the current turn speed of the player. It glides towards 0, and caps at max_turn_speed
 var current_turn_speed = 0;
 ##This is the current move speed of the player. It glides towards 0, and caps at max_move_speed
 var current_move_speed = 0;
 ##This is the current dash cooldown of the player. It should be 0 most of the time, and sets to dash_cooldown when dashing.
-var current_dash_cooldown = 0;
+# var current_dash_cooldown = 0;
 ##This is the current dash speed of the player. It should be 0 most of the time.
-var current_dash_speed = 0;
+# var current_dash_speed = 0;
 
 var dash_direction
 
 signal fire_weapon_0
 signal fire_weapon_1
 signal fire_weapon_2
-
 
 
 ##This is the maximum turn speed of the player, measured in Degrees per Second. 

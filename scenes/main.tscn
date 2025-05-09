@@ -22,6 +22,8 @@ offset_right = 135.0
 offset_bottom = -138.0
 script = ExtResource("2_tbgi4")
 
+[node name="DebugPoints2Mouse" parent="Player" instance=ExtResource("6_tefeu")]
+
 [node name="background" type="ColorRect" parent="."]
 anchors_preset = 8
 anchor_left = 0.5
@@ -90,6 +92,3 @@ position = Vector2(1573, 331)
 [node name="Crosshair" parent="." node_paths=PackedStringArray("player") instance=ExtResource("2_jyhfs")]
 position = Vector2(1158, 610)
 player = NodePath("../Player")
-
-[node name="DebugPoints2Mouse" parent="." instance=ExtResource("6_tefeu")]
-position = Vector2(551, 323)

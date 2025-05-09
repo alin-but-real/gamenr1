@@ -9,6 +9,9 @@ extends Area2D
 ##This is the percent by which the mech will decellerate towards 0, when not holding down any movement key. (EX: if this is set to 0.2, the mech will reach a full stop (from full speed) in 5 frames)
 @export var move_decceleration = 0.01
 
+##This flag dictates if the player should turn towards the crosshair automatically. This should be toggled on/off with ingame controls.
+@export var turn_towards_cursor : bool = true
+
 ##This is the cooldown before the player is allowed to dash again. I don't know what this is even measured in.
 # @export var dash_cooldown = 5000
 ##This is the speed the player will gain when dashing. It's also related to the time it takes to dash and is jank af.
@@ -25,7 +28,7 @@ var current_move_speed = 0;
 ##This is the current dash speed of the player. It should be 0 most of the time.
 # var current_dash_speed = 0;
 
-var dash_direction
+# var dash_direction
 
 signal fire_weapon_0
 signal fire_weapon_1
@@ -46,20 +49,38 @@ signal fire_weapon_2
 
 var velocity_vector : Vector2 = Vector2.ZERO
 
+var crosshair : Node
+
 
 
 func _ready() -> void:
 	print_debug("player awake")
+	crosshair = get_node("/root/Main/Crosshair")
 
 func _process(delta: float) -> void:
 	
+	
+	if Input.is_action_just_pressed("toggle_mouse_aim"):
+		if (turn_towards_cursor):
+			turn_towards_cursor = false;
+		else:
+			turn_towards_cursor = true;
+	
 	#TURN HANDLING
+	
 	var turn_direction: int = 0 # LEFT IS -1, RIGHT IS 1
 	
+	if (turn_towards_cursor):
+		var turndir = (rotation - global_position.angle_to_point(crosshair.global_position) + PI / 2 - PI)
+		if (turndir < -PI/10):
+			turn_direction += 1;
+		elif (turndir > PI/10):
+			turn_direction += -1;
+	
 	if Input.is_action_pressed("turn_left"):
-		turn_direction += -1;
+		turn_direction = -1;
 	if Input.is_action_pressed("turn_right"):
-		turn_direction += 1;
+		turn_direction = 1;
 		
 	if (abs(current_turn_speed) <= mech_turn_decceleration): #makes the deccelleration stop the mech once it gets close enough to 0
 		current_turn_speed = 0

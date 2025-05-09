@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://srpf1dv3mpvt"]
+
+[ext_resource type="Texture2D" uid="uid://drnqlew0gbtmd" path="res://assets/art/icon.svg" id="1_3r70a"]
+[ext_resource type="Script" uid="uid://ghcryv04fn85" path="res://scenes/debug/debug_points_2_mouse.gd" id="1_yi0hw"]
+
+[node name="DebugPoints2Mouse" type="Node2D"]
+scale = Vector2(1.59627, 0.938888)
+script = ExtResource("1_yi0hw")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -151)
+scale = Vector2(0.234817, 2.58555)
+texture = ExtResource("1_3r70a")

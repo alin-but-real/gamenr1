@@ -10,6 +10,4 @@ func _ready() -> void:
 	
 func _process(delta: float) -> void:
 	
-	#I HAVE NO IDEA WHY THIS WORKS. DON'T TOUCH IT
-	# rotation = (-global_position).angle_to(global_position - crosshair.global_position)  + PI / 1.5
 	rotation = global_position.angle_to_point(crosshair.global_position) + PI / 2

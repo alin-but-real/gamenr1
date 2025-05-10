@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://b5gh2ukre56s7"]
+
+[ext_resource type="Script" uid="uid://bobtlpr47m886" path="res://scenes/enemies/enemy_mech.gd" id="1_mk6jw"]
+[ext_resource type="Texture2D" uid="uid://bf48jaqdrii7l" path="res://assets/assetpacks/kenneyspace2/Ships/spaceShips_001.png" id="2_7qi0i"]
+[ext_resource type="Script" uid="uid://7iiu0io3miwc" path="res://scripts/enemies/enemy_weapon_slot_0.gd" id="3_72fhr"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pue8u"]
+size = Vector2(196, 186)
+
+[node name="EnemyMech" type="Area2D"]
+script = ExtResource("1_mk6jw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 3)
+shape = SubResource("RectangleShape2D_pue8u")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+rotation = 1.5596
+texture = ExtResource("2_7qi0i")
+
+[node name="WeaponSlot0" type="Node2D" parent="."]
+position = Vector2(0, -69)
+script = ExtResource("3_72fhr")
+
+[node name="WeaponSlot1" type="Node2D" parent="."]
+position = Vector2(-97, 2)
+
+[node name="WeaponSlot2" type="Node2D" parent="."]
+position = Vector2(99, 3)

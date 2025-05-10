@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://bsrfn6smf85o2"]
 
-[ext_resource type="Script" uid="uid://cvkfhidjpwuab" path="res://scripts/weapon_projectile.gd" id="1_01cec"]
+[ext_resource type="Script" uid="uid://cvkfhidjpwuab" path="res://scripts/weapons/wep_projectile/weapon_projectile.gd" id="1_01cec"]
 [ext_resource type="Texture2D" uid="uid://drnqlew0gbtmd" path="res://assets/art/icon.svg" id="1_bpeuo"]
 [ext_resource type="PackedScene" uid="uid://cpl82uaqc43f2" path="res://scenes/projectile.tscn" id="2_r30r8"]
 [ext_resource type="Texture2D" uid="uid://dmg6b5sfr4wid" path="res://assets/assetpacks/kenneyspace2/Parts/spaceParts_093.png" id="3_kbaw8"]

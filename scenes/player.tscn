@@ -1,11 +1,11 @@
 [gd_scene load_steps=8 format=3 uid="uid://c30qcrpj0upsy"]
 
-[ext_resource type="Script" uid="uid://da8a01o3oa476" path="res://scripts/player.gd" id="1_g2els"]
+[ext_resource type="Script" uid="uid://da8a01o3oa476" path="res://scripts/player/player.gd" id="1_g2els"]
 [ext_resource type="Texture2D" uid="uid://du4l5ltbmjkiq" path="res://assets/assetpacks/kenneyspace2/Ships/spaceShips_009.png" id="2_tuyoq"]
-[ext_resource type="Script" uid="uid://blrpbi3jhu3mq" path="res://scripts/player_weapon_slot_0.gd" id="3_dqkch"]
+[ext_resource type="Script" uid="uid://blrpbi3jhu3mq" path="res://scripts/player/player_weapon_slot_0.gd" id="3_dqkch"]
 [ext_resource type="PackedScene" uid="uid://bsrfn6smf85o2" path="res://scenes/weapon-projectile.tscn" id="3_qhqgy"]
-[ext_resource type="Script" uid="uid://cwulwwyctsobr" path="res://scripts/player_weapon_slot_1.gd" id="5_qlg0r"]
-[ext_resource type="Script" uid="uid://dl0mbgm816xp1" path="res://scripts/player_weapon_slot_2.gd" id="6_tuyoq"]
+[ext_resource type="Script" uid="uid://cwulwwyctsobr" path="res://scripts/player/player_weapon_slot_1.gd" id="5_qlg0r"]
+[ext_resource type="Script" uid="uid://dl0mbgm816xp1" path="res://scripts/player/player_weapon_slot_2.gd" id="6_tuyoq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g2els"]
 size = Vector2(121, 119)

@@ -70,11 +70,14 @@ func _process(delta: float) -> void:
 	
 	var turn_direction: int = 0 # LEFT IS -1, RIGHT IS 1
 	
+	
+	
 	if (turn_towards_cursor):
-		var turndir = (rotation - global_position.angle_to_point(crosshair.global_position) + PI / 2 - PI)
-		if (turndir < -PI/10):
+		var angle_to_cursor = (rotation - global_position.angle_to_point(crosshair.global_position) - PI / 2)
+		print_debug(angle_to_cursor)
+		if (angle_to_cursor < -PI/20):
 			turn_direction += 1;
-		elif (turndir > PI/10):
+		elif (angle_to_cursor > PI/20):
 			turn_direction += -1;
 	
 	if Input.is_action_pressed("turn_left"):

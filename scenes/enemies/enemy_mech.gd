@@ -66,7 +66,7 @@ func _process(delta: float) -> void:
 	var angle_to_player = global_position.angle_to_point(player.global_position)
 	var distance_to_player = global_position.distance_to(player.global_position)
 	
-	print_debug(rotation - angle_to_player)
+	
 	
 	if (distance_to_player > ai_distance_to_player):
 		move_vector = (player.global_position - global_position).normalized
